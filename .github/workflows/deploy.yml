@@ -60,7 +60,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Create .nojekyll
-        run: touch ./frontend/out/.nojekyll
+        run: touch out/.nojekyll
       - name: Restore cache
         uses: actions/cache@v4
         with:
