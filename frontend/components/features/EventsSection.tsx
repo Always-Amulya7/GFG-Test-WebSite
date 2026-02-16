@@ -95,11 +95,163 @@ const THEMES = {
         glow: "group-hover:opacity-100"
     }
 }
+// Mock Event Data
+const EVENTS: ExtendedEvent[] = [
+    {
+        id: "ev1",
+        title: "Introduction to Competitive Programming",
+        description: "A deep dive into common data structures and algorithms used in competitive programming competitions.",
+        date: "2026-03-15",
+        time: "10:00 AM - 01:00 PM",
+        location: "Block 1, Seminar Hall",
+        category: "Workshop",
+        type: "upcoming",
+        theme: "blue",
+        tags: ["CP", "Algorithms", "DSA"],
+        registration: {
+            status: "Open",
+            capacity: 100,
+            registered: 65,
+            deadline: "2026-03-14",
+            link: "#register"
+        }
+    },
+    {
+        id: "ev2",
+        title: "GFG Hack-A-Thon 2026",
+        description: "Join us for 24 hours of coding, innovation, and fun as we build solutions for real-world problems.",
+        date: "2026-04-10",
+        time: "09:00 AM onwards",
+        location: "Main Auditorium",
+        category: "Hackathon",
+        type: "upcoming",
+        theme: "purple",
+        tags: ["Hackathon", "Dev", "Innovation"],
+        registration: {
+            status: "Open",
+            capacity: 200,
+            registered: 120,
+            deadline: "2026-04-05",
+            link: "#register"
+        }
+    },
+    {
+        id: "ev3",
+        title: "Tech Talk: Future of AI in Web",
+        description: "Industry experts discuss how AI is transforming the web development landscape and what to expect in the coming years.",
+        date: "2026-05-02",
+        time: "04:00 PM - 06:00 PM",
+        location: "Online (Discord)",
+        category: "Tech Talk",
+        type: "upcoming",
+        theme: "green",
+        tags: ["AI", "WebDev", "FutureTech"],
+        registration: {
+            status: "Waitlist",
+            capacity: 50,
+            registered: 50,
+            deadline: "2026-05-01",
+            link: "#waitlist"
+        }
+    }
+]
 
+// Sub-component for individual event card
+function UpcomingEventCard({ event, index, align, colorTheme }: {
+    event: ExtendedEvent,
+    index: number,
+    align: "left" | "right",
+    colorTheme: "blue" | "purple" | "green" | "orange" | "pink"
+}) {
+    const theme = THEMES[colorTheme]
 
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: align === "left" ? -50 : 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className={cn(
+                "relative group/card flex flex-col p-8 rounded-3xl border-2 transition-all duration-500",
+                theme.bg,
+                theme.border,
+                theme.hoverBorder,
+                "backdrop-blur-xl bg-black/40"
+            )}
+        >
+            {/* Glow Effect */}
+            <div className={cn(
+                "absolute -inset-1 rounded-[32px] opacity-0 transition-opacity duration-500 blur-xl z-0",
+                colorTheme === 'blue' ? 'bg-blue-500/10' :
+                    colorTheme === 'purple' ? 'bg-purple-500/10' :
+                        'bg-green-500/10',
+                theme.glow
+            )} />
 
+            <div className="relative z-10">
+                <div className="flex items-center justify-between mb-6">
+                    <span className={cn(
+                        "px-4 py-1.5 rounded-full text-[10px] font-mono font-bold tracking-widest uppercase border",
+                        theme.badge
+                    )}>
+                        {event.category}
+                    </span>
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-white/40">
+                        <Clock className="w-3.5 h-3.5" />
+                        {event.time}
+                    </div>
+                </div>
 
-// Main EventsSection Component
+                <h3 className="text-2xl md:text-3xl font-bold font-space-grotesk mb-4 group-hover/card:text-white transition-colors">
+                    {event.title}
+                </h3>
+
+                <p className="text-white/60 text-sm md:text-base mb-8 leading-relaxed font-light">
+                    {event.description}
+                </p>
+
+                <div className="flex flex-col gap-4 mt-auto">
+                    <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-2">
+                            <MapPin className={cn("w-4 h-4", theme.text)} />
+                            <span className="text-xs text-white/60">{event.location}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Users className={cn("w-4 h-4", theme.text)} />
+                            <span className="text-xs text-white/60">{event.registration?.registered}/{event.registration?.capacity}</span>
+                        </div>
+                    </div>
+
+                    <div className="h-px w-full bg-white/5 my-2" />
+
+                    <div className="flex items-center justify-between">
+                        <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-wider text-white/30 font-mono">STATUS</span>
+                            <span className={cn("text-xs font-bold", theme.text)}>
+                                {event.registration?.status.toUpperCase()}
+                            </span>
+                        </div>
+                        <motion.a
+                            href={event.registration?.link}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={cn(
+                                "flex items-center gap-2 px-6 py-2 rounded-xl text-xs font-bold transition-all duration-300",
+                                colorTheme === 'blue' ? 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30' :
+                                    colorTheme === 'purple' ? 'bg-purple-500/20 text-purple-400 hover:bg-purple-500/30' :
+                                        'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                            )}
+                        >
+                            REGISTER NOW
+                            <ArrowRight className="w-4 h-4" />
+                        </motion.a>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    )
+}
+
 export function EventsSection() {
     const containerRef = useRef<HTMLDivElement>(null)
     const { scrollYProgress } = useScroll({
