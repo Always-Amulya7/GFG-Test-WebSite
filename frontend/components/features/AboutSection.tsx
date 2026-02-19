@@ -5,9 +5,9 @@ import { Cpu, Globe, Zap, Code2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Changed from default imports to named imports (added curly braces)
-import { SectionShell } from "../layout/SectionShell"
-import { GlassCard } from "../ui/glass-card"
-import { GradientText } from "../ui/gradient-text"
+import { SectionShell } from "../layout/navigation"
+import { GlassCard } from "../ui/cards"
+import { GradientText } from "../ui/effects"
 
 const features = [
     {
@@ -55,7 +55,7 @@ export function AboutSection() {
                             About <GradientText>GFG Official</GradientText>
                         </h2>
                         <p className="text-muted-foreground text-lg max-w-[600px]">
-                            We are a community of creators, thinkers, and builders dedicated to pushing the boundaries of what's possible in the digital realm.
+                            We are a community of creators, thinkers, and builders dedicated to pushing the boundaries of what&apos;s possible in the digital realm.
                         </p>
                     </div>
 

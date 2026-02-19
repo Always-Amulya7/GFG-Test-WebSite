@@ -1,5 +1,4 @@
-import { Navbar } from "@/components/layout/Navbar"
-import { Footer } from "@/components/layout/Footer"
+import { Navbar, Footer } from "@/components/layout/navigation"
 
 import { HeroSection } from "@/components/features/HeroSection"
 import { AboutSection } from "@/components/features/AboutSection"
@@ -7,15 +6,13 @@ import { TracksSection } from "@/components/features/TracksSection"
 import { EventsSection } from "@/components/features/EventsSection"
 
 import { TeamSection } from "@/components/features/TeamSection"
-import { WelcomeSplash } from "@/components/features/WelcomeSplash"
+import { WelcomeSplash, StatsSection, MarqueeSection } from "@/components/features/misc-sections"
 
-import { NetworkBackground } from "@/components/ui/network-background"
-import { StatsSection } from "@/components/features/StatsSection"
-import { MarqueeSection } from "@/components/features/MarqueeSection"
+import { NetworkBackground } from "@/components/ui/effects"
 import { FAQSection } from "@/components/features/FAQSection"
 import { EvolutionTimeline } from "@/components/features/EvolutionTimeline"
 import { BentoSection } from "@/components/features/BentoSection"
-import { FadeIn } from "@/components/ui/motion-wrapper"
+import { FadeIn } from "@/components/ui/interacts"
 
 export default function Home() {
   return (
