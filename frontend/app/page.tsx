@@ -1,7 +1,7 @@
 import { Navbar, Footer } from "@/components/layout/navigation"
 
 import { HeroSection } from "@/components/features/HeroSection"
-import { AboutSection } from "@/components/features/AboutSection"
+import AboutSection from "@/components/features/AboutSection";
 import { TracksSection } from "@/components/features/TracksSection"
 import { EventsSection } from "@/components/features/EventsSection"
 
@@ -11,7 +11,7 @@ import { WelcomeSplash, StatsSection, MarqueeSection } from "@/components/featur
 import { NetworkBackground } from "@/components/ui/effects"
 import { FAQSection } from "@/components/features/FAQSection"
 import { EvolutionTimeline } from "@/components/features/EvolutionTimeline"
-import { BentoSection } from "@/components/features/BentoSection"
+import FacultySponsorSection from "@/components/features/FacultySponsorSection";
 import { FadeIn } from "@/components/ui/interacts"
 
 export default function Home() {
@@ -36,7 +36,7 @@ export default function Home() {
 
         <FadeIn delay={0.4}><StatsSection /></FadeIn>
 
-        <FadeIn delay={0.2}><BentoSection /></FadeIn>
+        <FadeIn delay={0.2}><FacultySponsorSection /></FadeIn>
 
         <FadeIn delay={0.2}><TracksSection /></FadeIn>
 
