@@ -158,22 +158,22 @@ export function TeamSection() {
             </div>
             <div className="container relative z-10 mx-auto px-4">
                 <div className="text-center mb-[5vh] relative">
-                    <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/20 mb-6">
+                    <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/5 border border-emerald-500/20 mb-4">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /><span className="text-xs font-mono text-emerald-400 tracking-[0.2em] uppercase">System Architects</span>
                     </motion.div>
-                    <h2 className="text-4xl md:text-6xl font-bold font-space-grotesk text-white mb-6 tracking-tight">CORE <span className="text-[#00FF80] drop-shadow-[0_0_10px_rgba(0,255,128,0.5)]">INTELLIGENCE</span></h2>
+                    <h2 className="text-3xl md:text-6xl font-bold font-space-grotesk text-white mb-4 tracking-tight">CORE <span className="text-[#00FF80] drop-shadow-[0_0_10px_rgba(0,255,128,0.5)]">INTELLIGENCE</span></h2>
                     <p className="text-slate-400 max-w-lg mx-auto font-light">The neural network driving innovation, strategy, and execution.</p>
                 </div>
                 <div className="relative mb-[5vh]">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-32 bg-emerald-500/5 blur-3xl rounded-[100%] pointer-events-none" />
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 relative z-10">
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-24 relative z-10">
                         {president && <div className="relative w-full max-w-md"><div className="absolute -top-12 left-1/2 -translate-x-1/2 text-amber-500/20 font-mono text-xs tracking-widest uppercase">Command_01</div><TechCard member={president} index={0} isLeadership /></div>}
                         <div className="hidden md:flex flex-col items-center justify-center opacity-30"><div className="w-px h-16 bg-gradient-to-b from-transparent via-white to-transparent" /><div className="w-4 h-4 rounded-full border border-white bg-black" /><div className="w-px h-16 bg-gradient-to-b from-transparent via-white to-transparent" /></div>
                         {vicePresident && <div className="relative w-full max-w-md"><div className="absolute -top-12 left-1/2 -translate-x-1/2 text-emerald-500/20 font-mono text-xs tracking-widest uppercase">Command_02</div><TechCard member={vicePresident} index={1} isLeadership /></div>}
                     </div>
                 </div>
                 <div className="relative max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-6 relative z-10">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-6 relative z-10">
                         {leads.map((member, i) => (
                             <div key={member.id} className="flex justify-center relative group">
                                 <TechCard member={member} index={i + 2} />
@@ -208,30 +208,40 @@ function TechCard({ member, index, isLeadership = false }: { member: TeamMember,
     const theme = ROLE_THEMES[member.role] || ROLE_THEMES["Member"]
     const Icon = theme.icon
     return (
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }} className={cn("relative group w-full perspective-1000", isLeadership ? "max-w-[380px] aspect-[4/5]" : "max-w-[300px] aspect-[3/4]")}>
-            <div className={cn("absolute inset-0 transition-all duration-500 rounded-2xl overflow-hidden backdrop-blur-md border", theme.bg, theme.border, isLeadership ? theme.glow : "hover:" + theme.glow, "transform-style-3d group-hover:rotate-x-2 group-hover:scale-[1.02]")}>
-                <div className="relative z-10 h-full flex flex-col pt-6 pb-4 px-6">
-                    <div className="flex justify-between items-center mb-6">
-                        <div className="flex items-center gap-2"><div className={cn("p-1.5 rounded-md bg-white/5", theme.primary)}><Icon className="w-4 h-4" /></div><span className="font-mono text-[10px] text-white/40 tracking-wider">SYS_ID: {member.id.split('-').pop()}</span></div>
-                        <div className={cn("text-[9px] font-bold px-2 py-0.5 rounded border border-white/10 bg-black/20 uppercase tracking-widest", theme.primary)}>{member.position || "Operator"}</div>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.1 }}
+            className={cn(
+                "relative group w-full perspective-1000 transition-all duration-500 rounded-2xl overflow-hidden backdrop-blur-md border transform-style-3d group-hover:rotate-x-2 group-hover:scale-[1.02]",
+                theme.bg,
+                theme.border,
+                isLeadership ? "max-w-[380px] aspect-[4/5]" : "max-w-[300px]",
+                isLeadership ? theme.glow : "hover:" + theme.glow
+            )}
+        >
+            <div className="relative z-10 flex flex-col pt-6 pb-8 px-6 h-full">
+                <div className="flex justify-between items-center mb-6">
+                    <div className="flex items-center gap-2"><div className={cn("p-1.5 rounded-md bg-white/5", theme.primary)}><Icon className="w-4 h-4" /></div><span className="font-mono text-[10px] text-white/40 tracking-wider">SYS_ID: {member.id.split('-').pop()}</span></div>
+                    <div className={cn("text-[9px] font-bold px-2 py-0.5 rounded border border-white/10 bg-black/20 uppercase tracking-widest", theme.primary)}>{member.position || "Operator"}</div>
+                </div>
+                <div className="relative flex-1 flex flex-col items-center justify-center -mt-2">
+                    <div className={cn("relative rounded-full p-1 border border-dashed transition-all duration-700 group-hover:scale-110", theme.border, isLeadership ? "w-36 h-36" : "w-28 h-28")}>
+                        <div className="w-full h-full rounded-full overflow-hidden bg-black relative z-10">
+                            <img src={normalizeGDriveUrl(member.photo)} alt={member.name} className="w-full h-full object-cover filter brightness-90 contrast-125 group-hover:brightness-110 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=random` }} />
+                        </div>
+                        <div className="absolute bottom-1 right-1 w-4 h-4 bg-black rounded-full flex items-center justify-center z-20"><span className={cn("w-2.5 h-2.5 rounded-full animate-pulse", member.role === "President" ? "bg-emerald-500" : "bg-emerald-500/70")} /></div>
                     </div>
-                    <div className="relative flex-1 flex flex-col items-center justify-center -mt-2">
-                        <div className={cn("relative rounded-full p-1 border border-dashed transition-all duration-700 group-hover:scale-110", theme.border, isLeadership ? "w-36 h-36" : "w-28 h-28")}>
-                            <div className="w-full h-full rounded-full overflow-hidden bg-black relative z-10">
-                                <img src={normalizeGDriveUrl(member.photo)} alt={member.name} className="w-full h-full object-cover filter brightness-90 contrast-125 group-hover:brightness-110 transition-all duration-500" onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=random` }} />
-                            </div>
-                            <div className="absolute bottom-1 right-1 w-4 h-4 bg-black rounded-full flex items-center justify-center z-20"><span className={cn("w-2.5 h-2.5 rounded-full animate-pulse", member.role === "President" ? "bg-emerald-500" : "bg-emerald-500/70")} /></div>
-                        </div>
-                        <div className="text-center mt-6 relative">
-                            <h3 className={cn("font-space-grotesk font-bold tracking-tight mb-1 group-hover:text-white transition-colors", isLeadership ? "text-2xl" : "text-xl", theme.primary)}>{member.name}</h3>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/5"><span className="text-xs font-mono text-white/60 tracking-wide">{member.role.toUpperCase()}</span></div>
-                        </div>
+                    <div className="text-center mt-6 relative">
+                        <h3 className={cn("font-space-grotesk font-bold tracking-tight mb-1 group-hover:text-white transition-colors", isLeadership ? "text-2xl" : "text-xl", theme.primary)}>{member.name}</h3>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 rounded-full border border-white/5"><span className="text-xs font-mono text-white/60 tracking-wide">{member.role.toUpperCase()}</span></div>
                     </div>
-                    <div className="mt-auto pt-4 border-t border-white/5">
-                        <div className="flex justify-center gap-4">
-                            {member.social.github && <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all hover:scale-110 border border-white/5"><Github className="w-4 h-4" /></a>}
-                            {member.social.linkedin && <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-emerald-400 transition-all hover:scale-110 border border-white/5"><Linkedin className="w-4 h-4" /></a>}
-                        </div>
+                </div>
+                <div className="mt-auto pt-4 border-t border-white/5">
+                    <div className="flex justify-center gap-4">
+                        {member.social.github && <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-white transition-all hover:scale-110 border border-white/5"><Github className="w-4 h-4" /></a>}
+                        {member.social.linkedin && <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-white/5 hover:bg-white/10 text-white/40 hover:text-emerald-400 transition-all hover:scale-110 border border-white/5"><Linkedin className="w-4 h-4" /></a>}
                     </div>
                 </div>
             </div>

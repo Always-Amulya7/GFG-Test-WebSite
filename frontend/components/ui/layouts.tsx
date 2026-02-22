@@ -21,12 +21,13 @@ interface BentoCardProps {
     children?: React.ReactNode
     span?: "1x1" | "2x1" | "1x2" | "2x2"
     href?: string
+    onClick?: () => void
 }
 
 export function BentoGrid({ children, className }: BentoGridProps) {
     return (
         <div className={cn(
-            "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]",
+            "grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]",
             className
         )}>
             {children}
@@ -42,13 +43,14 @@ export function BentoCard({
     className,
     children,
     span = "1x1",
-    href
+    href,
+    onClick
 }: BentoCardProps) {
     const spanClasses = {
         "1x1": "col-span-1 row-span-1",
-        "2x1": "col-span-1 md:col-span-2 row-span-1",
+        "2x1": "col-span-2 row-span-1",
         "1x2": "col-span-1 row-span-2",
-        "2x2": "col-span-1 md:col-span-2 row-span-2"
+        "2x2": "col-span-2 row-span-2"
     }
 
     const content = (
@@ -70,7 +72,7 @@ export function BentoCard({
                     </h3>
                 )}
                 {description && (
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3">
+                    <p className="text-sm text-muted-foreground mb-4">
                         {description}
                     </p>
                 )}
@@ -85,6 +87,7 @@ export function BentoCard({
     return (
         <Wrapper
             href={href}
+            onClick={onClick}
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
