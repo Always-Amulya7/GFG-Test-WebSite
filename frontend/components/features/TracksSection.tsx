@@ -151,7 +151,7 @@ export function TracksSection() {
             <div className="absolute top-0 right-0 w-1/3 h-full bg-secondary/5 skew-x-12 blur-3xl -z-10" />
             <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-primary/5 -skew-x-12 blur-3xl -z-10" />
 
-            <div className="container relative z-10 px-6">
+            <div className="container mx-auto relative z-10 px-6 w-full max-w-7xl">
                 <div className="text-center max-w-2xl mx-auto mb-[5vh] animate-on-scroll">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

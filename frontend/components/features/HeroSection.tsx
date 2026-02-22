@@ -72,7 +72,7 @@ export function HeroSection() {
 
             <motion.div
                 style={{ y, opacity }}
-                className="container relative z-10 px-4 flex flex-col items-center text-center mt-10 md:mt-0"
+                className="container mx-auto relative z-10 px-4 w-full max-w-7xl flex flex-col items-center text-center mt-10 md:mt-0"
             >
                 {/* Status Badge */}
                 <motion.div

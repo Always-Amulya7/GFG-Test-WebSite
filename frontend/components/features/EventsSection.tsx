@@ -271,7 +271,7 @@ export function EventsSection() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px]" />
             </div>
 
-            <div className="container px-6 relative z-10">
+            <div className="container mx-auto px-6 relative z-10 w-full max-w-7xl">
                 {/* Section Header */}
                 <div className="text-center mb-[5vh]">
                     <motion.div

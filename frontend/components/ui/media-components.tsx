@@ -6,10 +6,12 @@ import {
     X, ZoomIn, ZoomOut, Download, Share2, ChevronLeft,
     ChevronRight, Maximize2, ImageIcon
 } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, getPublicUrl } from "@/lib/utils"
 import type { MediaItem } from "@/data/timeline-content"
 
 // --- ImageWithLoader ---
+// Renders image with correct public URL (basePath) and optional priority loading.
+// Uses a single request and paints as soon as the browser has data.
 
 interface ImageWithLoaderProps {
     src: string
@@ -17,6 +19,8 @@ interface ImageWithLoaderProps {
     className?: string
     onLoad?: () => void
     aspectRatio?: string
+    /** High priority = eager load and fetchpriority="high" for above-the-fold images */
+    priority?: boolean
 }
 
 export function ImageWithLoader({
@@ -24,30 +28,27 @@ export function ImageWithLoader({
     alt,
     className,
     onLoad,
-    aspectRatio = "auto"
+    aspectRatio = "auto",
+    priority = false
 }: ImageWithLoaderProps) {
     const [isLoading, setIsLoading] = useState(true)
     const [hasError, setHasError] = useState(false)
-    const [imageSrc, setImageSrc] = useState<string>("")
+    const resolvedSrc = getPublicUrl(src)
 
     useEffect(() => {
-        Promise.resolve().then(() => {
-            setIsLoading(true)
-            setHasError(false)
-        })
+        setIsLoading(true)
+        setHasError(false)
+    }, [resolvedSrc])
 
-        const img = new Image()
-        img.onload = () => {
-            setImageSrc(src)
-            setIsLoading(false)
-            onLoad?.()
-        }
-        img.onerror = () => {
-            setIsLoading(false)
-            setHasError(true)
-        }
-        img.src = src
-    }, [src, onLoad])
+    const handleLoad = () => {
+        setIsLoading(false)
+        onLoad?.()
+    }
+
+    const handleError = () => {
+        setIsLoading(false)
+        setHasError(true)
+    }
 
     if (hasError) {
         return (
@@ -74,14 +75,19 @@ export function ImageWithLoader({
                 </div>
             )}
             <img
-                src={imageSrc}
+                src={resolvedSrc}
                 alt={alt}
+                loading={priority ? "eager" : "lazy"}
+                fetchPriority={priority ? "high" : "auto"}
+                onLoad={handleLoad}
+                onError={handleError}
                 className={cn(
                     "transition-opacity duration-500",
                     isLoading ? "opacity-0" : "opacity-100",
                     className
                 )}
                 style={{ aspectRatio }}
+                decoding="async"
             />
         </div>
     )
@@ -225,12 +231,16 @@ export function PhotoMasonry({ media, onMediaClick, columns = 3, loading = false
     )
 }
 
+const MASONRY_PRIORITY_COUNT = 6
+const MASONRY_LAZY_ROOT_MARGIN = "200px"
+
 function MasonryItem({ media, index, onClick }: { media: MediaItem; index: number; onClick: () => void }) {
     const [isLoaded, setIsLoaded] = useState(false)
-    const [isVisible, setIsVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(index < MASONRY_PRIORITY_COUNT)
     const itemRef = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
+        if (index < MASONRY_PRIORITY_COUNT) return
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -238,11 +248,11 @@ function MasonryItem({ media, index, onClick }: { media: MediaItem; index: numbe
                     observer.disconnect()
                 }
             },
-            { rootMargin: '50px' }
+            { rootMargin: MASONRY_LAZY_ROOT_MARGIN }
         )
         if (itemRef.current) observer.observe(itemRef.current)
         return () => observer.disconnect()
-    }, [])
+    }, [index])
 
     return (
         <motion.button
@@ -266,6 +276,7 @@ function MasonryItem({ media, index, onClick }: { media: MediaItem; index: numbe
                         alt={media.caption || "Gallery image"}
                         onLoad={() => setIsLoaded(true)}
                         className="w-full h-auto object-cover"
+                        priority={index < 6}
                     />
                 )}
                 <div className={cn(
@@ -374,6 +385,7 @@ export function PhotoCarousel({
                                 src={media[currentIndex].url}
                                 alt={media[currentIndex].caption || `Slide ${currentIndex + 1}`}
                                 className="w-full h-full object-cover"
+                                priority
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
@@ -437,7 +449,7 @@ export function PhotoCarousel({
                             )}
                         >
                             {item.type === "image" ? (
-                                <img src={item.url} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                                <img src={getPublicUrl(item.url)} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                             ) : (
                                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                                     <svg className="w-6 h-6 text-white/70" fill="currentColor" viewBox="0 0 20 20">
@@ -526,7 +538,7 @@ export function AdvancedLightbox({ media, initialIndex, onClose }: AdvancedLight
 
     const handleDownload = () => {
         const link = document.createElement('a')
-        link.href = currentMedia.url
+        link.href = getPublicUrl(currentMedia.url)
         link.download = currentMedia.url.split('/').pop() || 'download'
         link.click()
     }
@@ -537,11 +549,11 @@ export function AdvancedLightbox({ media, initialIndex, onClose }: AdvancedLight
                 await navigator.share({
                     title: currentMedia.caption || 'Photo',
                     text: currentMedia.caption || 'Check out this photo',
-                    url: currentMedia.url
+                    url: getPublicUrl(currentMedia.url)
                 })
             } catch (err) { }
         } else {
-            navigator.clipboard.writeText(currentMedia.url)
+            navigator.clipboard.writeText(getPublicUrl(currentMedia.url))
             alert('Link copied to clipboard!')
         }
     }
@@ -625,6 +637,7 @@ export function AdvancedLightbox({ media, initialIndex, onClose }: AdvancedLight
                                     src={currentMedia.url}
                                     alt={currentMedia.caption || "Lightbox image"}
                                     className="w-full h-full object-contain"
+                                    priority
                                 />
                             </motion.div>
                         ) : (

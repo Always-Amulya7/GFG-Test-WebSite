@@ -47,7 +47,7 @@ export function StatsSection() {
     return (
         <section className="py-[6vh] relative overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/5 rounded-full blur-[100px] -z-10 animate-pulse-glow" />
-            <div className="container px-4">
+            <div className="container mx-auto px-4 w-full max-w-7xl">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     {STATS.map((stat, idx) => (
                         <div key={idx} className="glass-card p-6 rounded-xl flex flex-col items-center justify-center text-center group hover:-translate-y-2 transition-transform duration-300 border border-white/5 hover:border-primary/20">
