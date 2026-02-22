@@ -151,7 +151,7 @@ export function EvolutionTimeline() {
                 </>
             )}
 
-            <div className="container relative z-10 px-6">
+            <div className="max-w-7xl mx-auto w-full relative z-10 px-6">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -184,7 +184,7 @@ export function EvolutionTimeline() {
 
                 {/* Overview Cards */}
                 <div className={cn(
-                    "max-w-6xl mx-auto grid gap-8 transition-all duration-200",
+                    "max-w-7xl mx-auto grid gap-8 transition-all duration-200",
                     isSplitViewOpen && "blur-xl opacity-25 pointer-events-none"
                 )}>
                     {sections.map((section, index) => {
