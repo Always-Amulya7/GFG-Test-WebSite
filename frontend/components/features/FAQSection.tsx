@@ -36,7 +36,7 @@ export function FAQSection() {
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
             <div className="absolute -left-40 top-1/2 w-80 h-80 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="container relative z-10 px-6 max-w-4xl mx-auto">
+            <div className="container mx-auto relative z-10 px-6 w-full max-w-4xl">
                 <div className="text-center mb-[4vh] space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk">
                         Frequent <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Queries</span>

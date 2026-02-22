@@ -24,7 +24,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent,black)] opacity-80" />
       </div>
 
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col w-full max-w-[100vw] overflow-x-hidden">
         <WelcomeSplash />
         <Navbar />
 
