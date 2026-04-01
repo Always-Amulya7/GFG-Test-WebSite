@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ArrowLeft, Calendar, Clock, MapPin, UserCheck } from "lucide-react"
 import { timelineData } from "@/data/timeline-content"
-import { cn } from "@/lib/utils"
+import { cn, getPublicUrl } from "@/lib/utils"
 
 export default function EvolutionEventClient({ id }: { id: string }) {
     const router = useRouter()
@@ -38,7 +38,7 @@ export default function EvolutionEventClient({ id }: { id: string }) {
 
     const firstMedia = event.media?.[0]?.url || details.media?.[0]?.url || null
     const fallbackImage = "/images/team/Mukesh.jpg"
-    const heroImage = firstMedia || fallbackImage
+    const heroImage = getPublicUrl(firstMedia || fallbackImage)
 
     return (
         <main className="min-h-screen w-full bg-[#FAFAFA] dark:bg-[#0A0A0A] font-sans pb-24 pt-24 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
@@ -130,7 +130,7 @@ export default function EvolutionEventClient({ id }: { id: string }) {
                                 <div className="flex flex-col md:flex-row gap-6 items-start">
                                     <div className="w-28 h-28 shrink-0 rounded-full overflow-hidden border-[4px] border-gray-50 dark:border-gray-800 shadow-sm bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-3xl font-bold text-[#005DAA]">
                                         {displaySpeaker.image ? (
-                                            <img src={displaySpeaker.image} alt={displaySpeaker.name} className="object-cover w-full h-full" />
+                                            <img src={getPublicUrl(displaySpeaker.image)} alt={displaySpeaker.name} className="object-cover w-full h-full" />
                                         ) : (
                                             displaySpeaker.name.split(" ").map((n: string) => n[0]).join("").slice(0, 2)
                                         )}

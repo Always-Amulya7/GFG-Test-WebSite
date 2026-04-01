@@ -147,7 +147,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
                             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem] text-white/90"
+                            className="text-[2.75rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem] text-white/90"
                         >
                             Build
                         </motion.span>
@@ -155,7 +155,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
                             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex items-center gap-x-6 gap-y-2 text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem]"
+                            className="flex items-center gap-x-6 gap-y-2 text-[2.75rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem]"
                         >
                             <span className="text-white/20 font-mono tracking-tight text-[4rem] sm:text-[6rem]">/</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-primary to-emerald-200 drop-shadow-[0_0_30px_rgba(16,185,129,0.3)]">
@@ -166,7 +166,7 @@ export function HeroSection() {
                             initial={{ opacity: 0, x: 20, filter: "blur(8px)" }}
                             animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[3.5rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem] ml-auto lg:ml-0"
+                            className="text-[2.75rem] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem] ml-auto lg:ml-0"
                         >
                             Limits.
                         </motion.span>
@@ -236,7 +236,7 @@ export function HeroSection() {
                             </div>
 
                             {/* Panel Content Dashboard */}
-                            <div className="relative p-8 flex flex-col gap-10">
+                            <div className="relative p-5 md:p-8 flex flex-col gap-6 md:gap-10">
                                 
                                 {/* Header Core */}
                                 <div className="flex items-center justify-between">

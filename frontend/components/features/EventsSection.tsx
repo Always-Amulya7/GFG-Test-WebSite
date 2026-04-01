@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from "framer-motion"
 import { useRef } from "react"
-import { cn } from "@/lib/utils"
+import { cn, getPublicUrl } from "@/lib/utils"
 import { Calendar, Users, ArrowRight, Clock, MapPin, Sparkles } from "lucide-react"
 
 // Types
@@ -127,7 +127,7 @@ function UpcomingEventCard({ event, index }: { event: Event, index: number }) {
             {/* Image Section with Integrated Date */}
             <div className="relative aspect-[16/10] overflow-hidden">
                 <img
-                    src={event.image}
+                    src={getPublicUrl(event.image)}
                     alt={event.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

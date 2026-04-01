@@ -12,7 +12,7 @@ import {
     Image as ImageIcon, Activity, Heart, Github, Linkedin,
     Twitter, Mail, MessageCircle, Instagram
 } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, getPublicUrl } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { JoinModal } from "@/components/features/misc-sections"
@@ -67,8 +67,8 @@ export function Navbar() {
                     )}
                 >
                     <button onClick={() => router.push('/')} className="flex items-center gap-2 group shrink-0 cursor-pointer">
-                        <div className="relative w-8 h-8 flex items-center justify-center bg-white/5 rounded-lg border border-white/10 overflow-hidden group-hover:border-primary/50 transition-colors">
-                            <Image src={gfgLogo} alt="GFG Logo" width={20} height={20} className="object-contain" />
+                        <div className="relative w-8 h-8 flex items-center justify-center bg-white/5 rounded-lg border border-white/10 overflow-hidden group-hover:border-primary/50 transition-colors shrink-0">
+                            <Image src={getPublicUrl(gfgLogo.src)} alt="GFG Logo" width={20} height={20} className="object-contain" />
                         </div>
                         <span className={cn(
                             "font-space-grotesk font-bold text-sm tracking-wide hidden sm:block transition-all duration-300",

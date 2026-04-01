@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import { Github, Linkedin, Twitter, Users } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, getPublicUrl } from "@/lib/utils"
 
 export interface TeamMember {
     id: string
@@ -128,7 +128,9 @@ function TeamCard({ member, index, isLeadership = false }: { member: TeamMember,
             onMouseMove={handleMouseMove}
             className={cn(
                 "group relative rounded-3xl overflow-hidden glass-card flex flex-col p-6 w-full cursor-default",
-                isLeadership ? "min-h-[380px]" : "min-h-[340px]"
+                isLeadership 
+                    ? "min-h-[300px] md:min-h-[380px]" 
+                    : "min-h-[280px] md:min-h-[340px]"
             )}
         >
             {/* Interactive Radial Glow */}
@@ -155,10 +157,10 @@ function TeamCard({ member, index, isLeadership = false }: { member: TeamMember,
                     )} />
                     <div className={cn(
                         "relative rounded-full border border-white/10 p-1.5 overflow-hidden transition-all duration-500 group-hover:scale-105 group-hover:border-white/20 bg-background/50 backdrop-blur-md",
-                        isLeadership ? "w-36 h-36 md:w-44 md:h-44" : "w-28 h-28 md:w-32 md:h-32"
+                        isLeadership ? "w-28 h-28 md:w-44 md:h-44" : "w-24 h-24 md:w-32 md:h-32"
                     )}>
                         <img 
-                            src={member.photo} 
+                            src={getPublicUrl(member.photo)} 
                             alt={member.name} 
                             className="w-full h-full object-cover rounded-full grayscale-[50%] group-hover:grayscale-0 transition-all duration-500"
                             onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=random` }} 
