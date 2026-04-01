@@ -1,0 +1,17 @@
+D:\GFG_OFFICIAL-Website\frontend
+D:\GFG_OFFICIAL-Website\frontend\app
+D:\GFG_OFFICIAL-Website\frontend\app\events
+D:\GFG_OFFICIAL-Website\frontend\app\events\ [id]
+D:\GFG_OFFICIAL-Website\frontend\app\events\[id]
+D:\GFG_OFFICIAL-Website\frontend\components
+D:\GFG_OFFICIAL-Website\frontend\components\admin
+D:\GFG_OFFICIAL-Website\frontend\components\admin\media
+D:\GFG_OFFICIAL-Website\frontend\components\features
+D:\GFG_OFFICIAL-Website\frontend\components\layout
+D:\GFG_OFFICIAL-Website\frontend\components\ui
+D:\GFG_OFFICIAL-Website\frontend\lib
+D:\GFG_OFFICIAL-Website\frontend\public
+D:\GFG_OFFICIAL-Website\frontend\public\images
+D:\GFG_OFFICIAL-Website\frontend\public\images\team
+D:\GFG_OFFICIAL-Website\frontend\public\events
+D:\GFG_OFFICIAL-Website\frontend\data

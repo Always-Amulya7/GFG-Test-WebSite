@@ -57,7 +57,7 @@ const BarcodePattern = () => (
 
 const FacultySponsorSection = () => {
   return (
-    <section className="relative py-16 md:py-24 px-4 md:px-12 overflow-hidden">
+    <section className="relative py-10 md:py-16 lg:py-24 px-4 md:px-12 overflow-hidden bg-[#020202]">
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col items-center">
         {/* Section Header */}
         <motion.div
@@ -65,13 +65,13 @@ const FacultySponsorSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16 w-full"
+          className="text-center mb-6 md:mb-12 w-full"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 text-xs md:text-sm font-mono tracking-[0.2em] mb-4 md:mb-6 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 text-xs md:text-sm font-mono tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(234,179,8,0.2)]">
             <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
             ADMINISTRATIVE PROFILES
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground uppercase tracking-tight font-mono mb-4">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tight font-mono mb-4">
             Faculty <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 drop-shadow-[0_0_10px_rgba(234,179,8,0.4)]">Mentors</span>
           </h2>
           <div className="flex items-center justify-center gap-4 w-full max-w-md mx-auto">

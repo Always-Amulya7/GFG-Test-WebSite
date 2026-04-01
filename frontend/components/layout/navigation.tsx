@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { JoinModal } from "@/components/features/misc-sections"
 import gfgLogo from "@/public/gfg-official-logo.png"
-import gfgOfficialLogo from "@/assets/gfg-official-logo.png"
+import gfgOfficialLogo from "@/public/gfg-official-logo.png"
 
 // --- Navbar ---
 export function Navbar() {
@@ -403,16 +403,18 @@ export function Footer() {
                         <p className="text-muted-foreground text-sm leading-relaxed">Empowering students to build, innovate, and ship software that matters. Code the future with us.</p>
                         <div className="flex gap-4">
                             {[
-                                { icon: MessageCircle, href: "https://chat.whatsapp.com/Hr0puwutetlK6dc1MTXXJZ", hoverBg: "hover:bg-[#25D366]/10", hoverText: "hover:text-[#25D366]" },
-                                { icon: Instagram, href: "https://www.instagram.com/p/DShF7VrgI0L/?igsh=MWI3NTVyN250Z21kaA==", hoverBg: "hover:bg-[#E1306C]/10", hoverText: "hover:text-[#E1306C]" },
-                                { icon: Linkedin, href: "https://www.linkedin.com/company/gfgiter/posts/?feedView=all", hoverBg: "hover:bg-[#0A66C2]/10", hoverText: "hover:text-[#0A66C2]" },
-                                { icon: Mail, href: "mailto:gfgiter@gmail.com", hoverBg: "hover:bg-[#EA4335]/10", hoverText: "hover:text-[#EA4335]" }
+                                { icon: MessageCircle, name: "WhatsApp Network", href: "https://chat.whatsapp.com/Hr0puwutetlK6dc1MTXXJZ", hoverBg: "hover:bg-[#25D366]/10", hoverText: "hover:text-[#25D366]" },
+                                { icon: Instagram, name: "Instagram Feed", href: "https://www.instagram.com/p/DShF7VrgI0L/?igsh=MWI3NTVyN250Z21kaA==", hoverBg: "hover:bg-[#E1306C]/10", hoverText: "hover:text-[#E1306C]" },
+                                { icon: Linkedin, name: "LinkedIn Professional", href: "https://www.linkedin.com/company/gfgiter/posts/?feedView=all", hoverBg: "hover:bg-[#0A66C2]/10", hoverText: "hover:text-[#0A66C2]" },
+                                { icon: Mail, name: "Email Communication", href: "mailto:gfgiter@gmail.com", hoverBg: "hover:bg-[#EA4335]/10", hoverText: "hover:text-[#EA4335]" }
                             ].map((social, i) => (
                                 <a 
                                     key={i} 
                                     href={social.href} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
+                                    title={social.name}
+                                    aria-label={social.name}
                                     className={cn(
                                         "w-10 h-10 rounded-full bg-white/5 flex items-center justify-center transition-all duration-300 border border-transparent hover:border-white/20",
                                         social.hoverBg,
@@ -427,7 +429,11 @@ export function Footer() {
                     <div>
                         <h4 className="font-bold text-white mb-6 uppercase tracking-widest text-sm flex items-center gap-2"><span className="w-1 h-4 bg-primary rounded-full" />Explore</h4>
                         <ul className="space-y-3 text-sm text-muted-foreground">
-                            {[{ label: 'Events', href: '#events' }, { label: 'Projects', href: '#innovation' }, { label: 'Team', href: '#system-architects' }].map((link) => (
+                            {[
+                                { label: 'Coming Events', href: '#events' }, 
+                                { label: 'Past Events', href: '#events' }, 
+                                { label: 'Team Lead', href: '#team' }
+                            ].map((link) => (
                                 <li key={link.label}>
                                     <a href={link.href} onClick={(e) => scrollToSection(e, link.href)} className="hover:text-primary transition-colors flex items-center gap-2 group cursor-pointer">
                                         <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-primary">&gt;</span>{link.label}
@@ -481,7 +487,7 @@ interface SectionShellProps {
 
 export function SectionShell({ children, id, className, title, subtitle, badge }: SectionShellProps) {
     return (
-        <section id={id} className={cn("py-24 md:py-32 relative overflow-hidden", className)}>
+        <section id={id} className={cn("py-12 md:py-20 relative overflow-hidden", className)}>
             <div className="container mx-auto px-4 relative z-10 mb-16 md:mb-24 text-center">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-green-500/0 via-green-500/20 to-green-500/0" />
                 {badge && (
