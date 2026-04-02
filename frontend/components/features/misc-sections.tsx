@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { AnimatedCounter } from "@/components/ui/effects"
-import gfgLogo from "@/assets/gfg-official-logo.png"
+import gfgLogo from "@/public/gfg-official-logo.png"
 
 // --- MarqueeSection ---
 const TECHNOLOGIES = [
@@ -45,7 +45,7 @@ const STATS = [
 
 export function StatsSection() {
     return (
-        <section className="py-[6vh] relative overflow-hidden">
+        <section className="py-12 md:py-16 relative overflow-hidden bg-[#020202]">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-primary/5 rounded-full blur-[100px] -z-10 animate-pulse-glow" />
             <div className="container mx-auto px-4 w-full max-w-7xl">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">

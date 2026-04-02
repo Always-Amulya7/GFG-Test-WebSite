@@ -5,45 +5,44 @@
 }
 
 :root {
-    /* HackNITR Inspired Cyber-Tech Theme */
-    /* Backgrounds: Deep, Dark, Void-like */
-    --background: 240 10% 3%;
-    /* #070708 */
+    /* Fonts loaded manually */
+    --font-space-grotesk: "Space Grotesk", sans-serif;
+    --font-jetbrains-mono: "JetBrains Mono", monospace;
+
+    /* Premium Dark Glassmorphic Theme */
+    /* Backgrounds: Deep, infinite black */
+    --background: 240 5% 4%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 5%;
+    --card: 240 5% 6%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 5%;
+    --popover: 240 5% 6%;
     --popover-foreground: 0 0% 98%;
 
-    /* Primary: Neon Green/Cyan - Electric & Sharp */
-    --primary: 150 100% 50%;
-    /* #00FF80 - Neon Green */
+    /* Primary: Vibrant Emerald/Teal - Premium Tech */
+    --primary: 153 60% 53%; /* Elegant Green */
     --primary-foreground: 240 10% 4%;
 
-    /* Secondary: Cyber Blue */
-    --secondary: 190 100% 50%;
-    /* #00F0FF - Cyan */
+    /* Secondary: Deep Blue/Indigo */
+    --secondary: 217 91% 60%;
     --secondary-foreground: 240 10% 4%;
 
-    /* Accent: Hot Pink/Purple for Glitch/Warn */
-    --accent: 300 100% 50%;
-    /* #FF00FF */
+    /* Accent: Sleek Purple */
+    --accent: 270 70% 60%;
     --accent-foreground: 0 0% 98%;
 
     --muted: 240 5% 15%;
-    --muted-foreground: 240 5% 60%;
+    --muted-foreground: 240 5% 65%;
 
-    --destructive: 0 100% 50%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5% 20%;
-    --input: 240 5% 20%;
-    --ring: 150 100% 50%;
+    --border: 240 5% 15%;
+    --input: 240 5% 15%;
+    --ring: 153 60% 53%;
 
-    --radius: 0.25rem;
-    /* Sharper corners for tech feel */
+    --radius: 0.75rem; /* Smoother, more modern rounded corners */
 }
 
 @layer base {
@@ -55,7 +54,7 @@
         background-color: hsl(var(--background));
         color: hsl(var(--foreground));
         font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
-        /* Noise Texture Overlay */
+        /* Smoother Noise Texture Overlay */
         position: relative;
     }
 
@@ -68,8 +67,8 @@
         height: 100%;
         pointer-events: none;
         z-index: 50;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+        opacity: 0.3;
     }
 }
 
@@ -90,26 +89,27 @@
 
 /* 2. Glassmorphism Card - Sharper & Darker */
 .glass-panel {
-    background: rgba(10, 10, 12, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    background: rgba(15, 15, 20, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .glass-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
-    border-color: hsla(var(--primary), 0.5);
-    box-shadow: 0 0 20px hsla(var(--primary), 0.2);
-    transform: translateY(-4px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-color: hsla(var(--primary), 0.3);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.8), 0 0 30px hsla(var(--primary), 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px) scale(1.01);
 }
 
 /* 3. Tech Borders */

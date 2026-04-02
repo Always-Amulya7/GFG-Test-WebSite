@@ -1,27 +1,18 @@
-import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import PageTransition from "@/components/ui/page-transition";
 import { CommandPalette, MouseFollower, ScrollProgress, SmoothScroll } from "@/components/ui/interacts";
 import { NoiseOverlay } from "@/components/ui/effects";
 
-// Quantum-Digital Typography
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  adjustFontFallback: false,
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
+// Fonts loaded via head link tags in the HTML
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+export const viewport: Viewport = {
+  width: 1280,
+  initialScale: 0.3,
+  maximumScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://gfg-official.github.io/GFG_OFFICIAL-Website/"),
@@ -61,8 +52,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
       <body
-        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground font-sans selection:bg-green-500/30 selection:text-green-200`}
+        className="font-space-grotesk antialiased bg-background text-foreground selection:bg-green-500/30 selection:text-green-200"
       >
         <SmoothScroll />
         <MouseFollower />

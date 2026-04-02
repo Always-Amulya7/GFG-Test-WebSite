@@ -38,14 +38,11 @@ export default function Home() {
         <FadeIn delay={0.2}><TracksSection /></FadeIn>
 
         <FadeIn delay={0.2}><EvolutionTimeline /></FadeIn>
-
-
-        <EventsSection />
-
+ 
+        <FadeIn delay={0.2}><EventsSection /></FadeIn>
+ 
         <FadeIn delay={0.2}><TeamSection /></FadeIn>
-
-
-
+ 
         <FadeIn delay={0.2}><FAQSection /></FadeIn>
 
         <Footer />
